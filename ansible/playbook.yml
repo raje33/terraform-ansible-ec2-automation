@@ -1,10 +1,11 @@
----
-- name: Basic setup on Managed Node
-  hosts: managed
+- hosts: servers
   become: yes
   tasks:
-    - name: Install Apache
-      apt:
-        name: apache2
-        state: present
-        update_cache: yes
+    - name: Update apt
+      apt: { update_cache: yes }
+
+    - name: Install nginx
+      apt: { name: nginx, state: present }
+
+    - name: Start nginx
+      service: { name: nginx, state: started, enabled: true }
