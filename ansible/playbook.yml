@@ -1,0 +1,10 @@
+---
+- name: Basic setup on Managed Node
+  hosts: managed
+  become: yes
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
